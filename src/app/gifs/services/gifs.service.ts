@@ -12,27 +12,28 @@ export class GifsService {
   }
 
   private organizeHistory(tag: string){
-    tag = tag.toLowerCase();
+   tag = tag.toLowerCase();
 
     //Validación de que no acepte tags con el mismo nombre
+    console.log(this._tagsHistory);
     if (this._tagsHistory.includes(tag)){
-      this._tagsHistory = this._tagsHistory.filter((oldTag) => oldTag !== tag ) //el filter solo trae expresiones verdaderas entonces solo traera tags con nombres diferentes
+      this._tagsHistory = this._tagsHistory.filter( (oldTag) => oldTag !== tag ) //el filter solo trae expresiones verdaderas entonces solo traera tags con nombres diferentes
+      
     }
     // Que lo imprima al inicio el tag que se volvió a buscar
     this._tagsHistory.unshift(tag);
 
+    
+
     //Solo mostrar los primeros 10 tags
-    this._tagsHistory = this._tagsHistory.splice(0,10);
+    this._tagsHistory = this.tagsHistory.splice(0,10);
   }
 
   searchTag ( tag: string): void{
 
     //Validacion de que no vaya vacío
     if (tag.length === 0) return;
-
     this.organizeHistory(tag);
-
-    console.log(this._tagsHistory);
   }
 
 }
